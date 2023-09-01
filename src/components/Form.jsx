@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import { Info } from "./Info";
 
 function Form() {
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    course: '',
+    firstName: "",
+    lastName: "",
+    course: "",
     months: 1,
   });
-  
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -19,10 +20,10 @@ function Form() {
   const calculateDiscount = () => {
     let months = formData.months;
     let discountRate = 0;
-    
+
     if (months === 1) discountRate = 0;
-    else if (months >= 2 && months <= 3) discountRate = 0.10;
-    else if (months >= 4 && months <= 5) discountRate = 0.20;
+    else if (months >= 2 && months <= 3) discountRate = 0.1;
+    else if (months >= 4 && months <= 5) discountRate = 0.2;
     else if (months >= 6 && months <= 7) discountRate = 0.27;
     else if (months >= 8 && months <= 9) discountRate = 0.37;
     else if (months >= 10) discountRate = 0.53;
@@ -60,7 +61,11 @@ function Form() {
         />
       </div>
       <div className="mb-4">
-        <select name="course" onChange={handleInputChange} className="p-2 border w-full">
+        <select
+          name="course"
+          onChange={handleInputChange}
+          className="p-2 border w-full"
+        >
           <option value="">Seleccione el curso</option>
           <option value="inglés">Inglés</option>
           <option value="francés">Francés</option>
@@ -77,18 +82,11 @@ function Form() {
           className="p-2 border w-full"
         />
       </div>
-      <div className="mb-4">
-        <button className="p-2 bg-blue-500 text-white">Calcular</button>
-      </div>
-      <div>
-        <p>Nombre del cliente: {formData.firstName}</p>
-        <p>Apellido del cliente: {formData.lastName}</p>
-        <p>Tipo de curso: {formData.course}</p>
-        <p>Meses a pagar: {formData.months}</p>
-        <p>Descuento: ${((25 * calculateDiscount()) * formData.months).toFixed(2)}</p>
-        <p>Porcentaje de descuento: {(calculateDiscount() * 100).toFixed(0)}%</p>
-        <p>Total a pagar: ${totalCost()}</p>
-      </div>
+      <Info
+        formData={formData}
+        calculateDiscount={calculateDiscount}
+        totalCost={totalCost}
+      />
     </div>
   );
 }
