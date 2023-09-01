@@ -77,9 +77,6 @@ function Form() {
           className="p-2 border w-full"
         />
       </div>
-      <div className="mb-4">
-        <button className="p-2 bg-blue-500 text-white">Calcular</button>
-      </div>
       <div>
         <p>Nombre del cliente: {formData.firstName}</p>
         <p>Apellido del cliente: {formData.lastName}</p>
